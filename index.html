@@ -183,7 +183,7 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form class="contact-form" action="mailto:ayishasmas14@gmail.com" method="post" enctype="text/plain">
+                    <form class="contact-form " name="submit-to-google-sheet"  >
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" id="name" name="name"class="fullname" placeholder="Name">
@@ -200,7 +200,13 @@
                         </div>
                         <div class="button-area">
                             <button class="send-msg" type="submit" name="send">Send message</button>
-                                                                              </div>
+                        </div>
+
+                        <div style="display:none" class="thankyou_message">
+ <!-- You can customize the thankyou message by editing the code below -->
+ <h2><em>Thanks</em> for Your Valuable Time to Contact Me!
+ </h2>
+</div>
                     </form>
                 </div>
             </div>
@@ -219,6 +225,22 @@
             </div>
         <span>Created By AyishaAfzal | <span class="far fa-copyright"></span> 2021 All rights reserved.</span>
     </footer>
+   
+     
+      <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+      <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+      <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzwOLeTMh9xR4dS15WGQbhV0j4fQgg2bg4_Q7uOdtM1WSX7WHEHfdfX0Gu5T4vfR4mp/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert('Successfully Submitted!Thanks For Your response!', response))
+            .catch(error =>alert('Error!', error.message))
+        })
+      </script>
     <script src="script.js"></script>
 </body>
 </html>
